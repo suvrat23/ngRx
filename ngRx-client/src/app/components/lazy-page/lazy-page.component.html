@@ -1,0 +1,81 @@
+<p-confirmDialog></p-confirmDialog>
+<p-toast></p-toast>
+<div style="display: flex; justify-content: space-between; display: inline-flex" >
+<button type="button" id ="add-button" pButton label="Add" class="mr-2" (click)="openAddDialog()"></button>
+<div style="position: absolute; right: 0" >
+<span class="icon-left" >
+<!--  <i class="pi pi-search"></i>-->
+  <gm-app-search pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..."></gm-app-search>
+</span>
+</div>
+</div>
+<div class="card">
+  <br>
+
+  <p-table #dt [value]="part" [paginator]="true" [rows]="10" [globalFilterFields]="['id','part_name','part_description','part_type_code']" [showCurrentPageReport]="true"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+    <ng-template pTemplate="header">
+      <tr>
+        <th >ID</th>
+        <th >Name</th>
+        <th >Description</th>
+        <th >Type Code</th>
+        <th >Created By</th>
+        <th style="width: max-content">Created At</th>
+        <th >Updated By</th>
+        <th >Updated At</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-part>
+      <tr>
+        <td>{{part.id}}</td>
+        <td>{{part.part_name}}</td>
+        <td>{{part.part_description}}</td>
+        <td>{{part.part_type_code}}</td>
+        <td>{{part.created_by}}</td>
+        <td style="word-break: break-word">{{part.created_at}}</td>
+        <td>{{part.updated_by}}</td>
+        <td style="word-break: break-word">{{part.updated_at}}</td>
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="openEditDialog(part)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletePartConfirmation(part.id)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog  [(visible)]="partDialogVisible" header="Product Details" [modal]="true" [style]="{ width: '450px' }">
+<!--  <ng-template pTemplate="content">-->
+        <form #myForm="ngForm" novalidate>
+        <div class="p-field">
+          <input type="text" pInputText id="name" name= "partName" [(ngModel)]="editPart.part_name" required placeholder="Part Name"/>
+        </div>
+        <br>
+        <div class="p-field">
+          <input type="text" pInputText id="description" name="description" [(ngModel)]="editPart.part_description" required placeholder="Part Description"/>
+        </div>
+        <br>
+        <div class="p-field">
+          <input type="text" pInputText id="createdBy" name ="createdBy" [(ngModel)]="editPart.created_by" required placeholder="Created By"/>
+        </div>
+  <br>
+        <div class="p-field">
+          <input type="text" pInputText id="updatedBy" name="updatedBy" [(ngModel)]="editPart.updated_by" required placeholder="Updated By"/>
+        </div>
+  <br>
+        <div class="p-field">
+          <input type="text" pInputText id="typeCode" name="typeCode" [(ngModel)]="editPart.part_type_code" required placeholder="Type Code"/>
+        </div>
+<br>
+      <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="updatePartDialogVisible(false)"></button>
+      <button pButton pRipple label="Save" icon="pi pi-check" id="save-button" class="p-button-text" (click)="save ? addPart():updatePart()"></button>
+        </form>
+<!--  </ng-template>-->
+
+
+</p-dialog>
+
+
+

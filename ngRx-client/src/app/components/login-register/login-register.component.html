@@ -1,0 +1,67 @@
+<p-messages></p-messages>
+
+<div style="background-color: lightblue">
+<div class="card" style="right: auto">
+<p-button gmTertiary label="Register" class="mr-2" (click)="OpenRegisterDialogBox(true)"></p-button>
+<p-button gmTertiary label="Login" class="mr-2" (click)="OpenLoginDialogBox(true)"></p-button>
+</div>
+<p-dialog  [(visible)]="openSesame" header="Product Details" [modal]="true" [style]="{ width: '450px' }">
+  <!--  <ng-template pTemplate="content">-->
+  <div class="p-field">
+    <input type="text" pInputText id="name" [(ngModel)]="addUser.gmin" required placeholder="GMIN"/>
+  </div>
+  <br>
+  <div class="p-field">
+    <input type="text" pInputText id="description" [(ngModel)]="addUser.first_name" required placeholder="First Name"/>
+  </div>
+  <br>
+  <div class="p-field">
+    <input type="text" pInputText id="createdBy" [(ngModel)]="addUser.last_name" required placeholder="Last Name"/>
+  </div>
+  <br>
+  <div class="p-field">
+    <label for="companyName">Company Name:  </label>
+    <select name="companyName" id="companyName" [(ngModel)]="addUser.company_name" required>
+      <option value="null" disabled>Choose a Value</option>
+      <option value="gm">GM</option>
+      <option value="gmc">GMC</option>
+      <option value="buick">Buick</option>
+      <option value="cadillac">Cadillac</option>
+      <option value="chevrolet">Chevrolet</option>
+    </select>
+  </div>
+  <br>
+  <div class="p-field">
+    <input type="text" pInputText id="typeCode" [(ngModel)]="addUser.email" required placeholder="Email"/>
+  </div>
+  <br>
+  <div class="p-field">
+    <input type="text" pInputText id="username" [(ngModel)]="addUser.username" required placeholder="Username"/>
+  </div>
+  <br>
+  <div class="p-field">
+    <input type="password" pInputText id="password" [(ngModel)]="addUser.password" required placeholder="Password"/>
+  </div>
+  <br>
+  <div class="p-dialog-footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="OpenRegisterDialogBox(false)"></button>
+    <button pButton pRipple label="Save" icon="pi pi-check" id="save-button" class="p-button-text" (click)="add_User(addUser)"></button>
+  </div>
+</p-dialog>
+
+<p-dialog  [(visible)]="loginDialogBox" header="Product Details" [modal]="true" [style]="{ width: '450px' }">
+  <div class="p-field">
+    <input type="text" pInputText id="_username" [(ngModel)]="addUser.username" required placeholder="Username"/>
+  </div>
+  <br>
+  <div class="p-field">
+    <input type="password" pInputText id="_password" [(ngModel)]="addUser.password" required placeholder="Password"/>
+  </div>
+  <br>
+  <div class="p-dialog-footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="OpenLoginDialogBox(false)"></button>
+    <button pButton pRipple label="Save" icon="pi pi-check" id="save--button" class="p-button-text" (click)="loginUser()"></button>
+  </div>
+</p-dialog>
+
+</div>

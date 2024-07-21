@@ -1,0 +1,25 @@
+@import '_variables';
+
+@mixin small {
+  @media (max-width: #{$sm}) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @media (min-width: #{$sm}) and (max-width: #{$md}) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media (min-width: #{$md}) and (max-width: #{$lg}) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: #{$lg}) {
+    @content;
+  }
+}

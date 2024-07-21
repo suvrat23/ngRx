@@ -1,0 +1,12 @@
+<p-toolbar gmApplication>
+  <div class="ui-toolbar-group-left">
+    <gm-app-title  name='Quick Start Application' id='app-title' logoAlt="General Motors Logo" logoSrc='assets/img/gm-brandmark.svg'></gm-app-title>
+  </div>
+  <div class="ui-toolbar-group-right" >
+    <gm-user-menu  [model]="userMenuItems" label='John Doe'></gm-user-menu>
+  </div>
+</p-toolbar>
+<div *ngIf="!log.isHomeRoute()" class="nav-toolbar">
+  <gm-navbar id="navbar1"  [navItems]="navMenuItems"></gm-navbar>
+</div>
+
